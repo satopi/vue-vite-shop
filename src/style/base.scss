@@ -1,0 +1,363 @@
+/* 清除默认样式 */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: 0;
+  -webkit-touch-callout: none;
+  box-sizing: border-box;
+  font-size: var(--el-font-size-base);
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--el-background-color-base);
+}
+
+ul, li, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* iconfont 多色图标 */
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/*背景色*/
+/* 主题 */
+.bg-primary {
+  background: var(--el-color-primary);
+}
+
+/* 成功 */
+.bg-success {
+  background: var(--el-color-success);
+}
+
+/* 警告 */
+.bg-warning {
+  background: var(--el-color-warning);
+}
+
+/* 错误 */
+.bg-danger {
+  background: var(--el-color-danger);
+}
+
+.bg-white {
+  background: var(--el-color-white);
+}
+
+.bg-black {
+  background: var(--el-color-black);
+}
+
+/* 文字 */
+/* 主要色 */
+.f-color-first {
+  color: var(--el-text-color-primary);
+}
+
+/* 常规色 */
+.f-color-second {
+  color: var(--el-text-color-regular);
+}
+
+/* 次级色 */
+.f-color-third {
+  color: var(--el-text-color-secondary);
+}
+
+/* 占位色 */
+.f-color-fourth {
+  color: var(--el-text-color-placeholder);
+}
+
+/* 主题色 */
+.f-color-primary {
+  color: var(--el-color-primary);
+}
+
+/* 成功色 */
+.f-color-success {
+  color: var(--el-color-success);
+}
+
+/* 警告色 */
+.f-color-warning {
+  color: var(--el-color-warning);
+}
+
+/* 错误色 */
+.f-color-danger {
+  color: var(--el-color-danger);
+}
+
+/* 白色 */
+.f-color-white {
+  color: var(--el-color-white);
+}
+
+/* 黑色 */
+.f-color-black {
+  color: var(--el-color-black);
+}
+
+.f-bold {
+  font-weight: bold;
+}
+
+.f-left {
+  text-align: left;
+}
+
+.f-right {
+  text-align: right;
+}
+
+.f-center {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.text-cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-cut-two {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.text-cut-three {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* 边框 */
+.border {
+  border: 1px solid var(--el-border-color-base);
+}
+
+.border-top {
+  border-top: 1px solid var(--el-border-color-base);
+}
+
+.border-right {
+  border-right: 1px solid var(--el-border-color-base);
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--el-border-color-base);
+}
+
+.border-left {
+  border-left: 1px solid var(--el-border-color-base);
+}
+
+.round {
+  border-radius: 50%;
+}
+
+/* 阴影 */
+.shadow {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12),0 0 6px rgba(0,0,0,0.04);
+}
+.light-shadow {
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+}
+.dark-shadow {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12),0 0 6px rgba(0,0,0,0.1);
+}
+
+/* flex布局 */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  @extend .flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  @extend .flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.align-center {
+  @extend .flex;
+  align-items: center;
+}
+
+.justify-center {
+  @extend .flex;
+  justify-content: center;
+}
+
+.justify-between {
+  @extend .flex;
+  justify-content: space-between;
+}
+
+.justify-around {
+  @extend .flex;
+  justify-content: space-around;
+}
+
+.flex-shrink {
+  @extend .flex;
+  flex-shrink: 0;
+}
+
+.flex-wrap {
+  @extend .flex;
+  flex-wrap: wrap;
+}
+
+/* 定位 */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+
+/* 浮动 */
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+/* 图标大小 */
+.icon, .iconfont {
+  font-size: 16px;
+}
+
+/* 宽/高/内边距/外边距/行高/flex占比 */
+@for $i from 1 through 6 {
+  .flex-#{$i} {
+      flex: $i;
+  }
+}
+
+$x: 1px;
+$nums: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 22, 24, 25, 26, 28, 30, 32, 34, 35, 36, 40, 42, 45, 48, 50, 54, 55, 58, 60, 70, 72, 80, 90, 100;
+
+@for $i from 0 through length($nums) {
+
+  .w-#{$i} {
+    width: $x * $i;
+  }
+
+  .h-#{$i} {
+    height: $x * $i;
+  }
+
+  .p-#{$i} {
+      padding: $x * $i;
+  }
+
+  .p-l-#{$i} {
+      padding-left: $x * $i;
+  }
+
+  .p-r-#{$i} {
+      padding-right: $x * $i;
+  }
+
+  .p-t-#{$i} {
+      padding-top: $x * $i;
+  }
+
+  .p-b-#{$i} {
+      padding-bottom: $x * $i;
+  }
+
+  .m-#{$i} {
+      margin: $x * $i;
+  }
+
+  .m-l-#{$i} {
+      margin-left: $x * $i;
+  }
+
+  .m-r-#{$i} {
+      margin-right: $x * $i;
+  }
+
+  .m-t-#{$i} {
+      margin-top: $x * $i;
+  }
+
+  .m-b-#{$i} {
+      margin-bottom: $x * $i;
+  }
+
+  .f-s-#{$i} {
+      font-size: $x * $i !important;
+  }
+
+  .l-h-#{$i} {
+      line-height: $x * $i;
+  }
+
+  .flex-g-#{$i} {
+      flex-grow: $i;
+  }
+}

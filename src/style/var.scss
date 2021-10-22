@@ -1,0 +1,51 @@
+$colors: (
+  "primary": (
+    "base": #395b77
+  ),
+  "success": (
+    "base": #21ba45
+  ),
+  "warning": (
+    "base": #E6A23C
+  ),
+  "danger": (
+    "base": #dd4f42
+  ),
+  'error': (
+    'base': #db2828,
+  ),
+  "info": (
+    "base": #909399
+  ),
+);
+
+// You should use them in scss, because we calculate it by sass.
+// comment next lines to use default color
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: $colors,
+
+  $border-color: (
+    "base": #DCDFE6,
+    "light": #E4E7ED
+  ),
+
+  $text-color: (
+    "primary": #303133,
+    "regular": #606266,
+    "secondary": #909399,
+    "placeholder": #c0c4cc
+  ),
+
+  $font-size: (
+    "base": 14px,
+    "extra-large": 20px,
+    "large": 18px,
+    "medium": 16px,
+    "small": 13px,
+    "extra-small": 12px
+  ),
+
+  $font-path: 'element-plus/theme-chalk/fonts'
+);
+
+@use "element-plus/theme-chalk/src/index.scss" as *;

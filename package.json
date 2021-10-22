@@ -1,0 +1,47 @@
+{
+  "name": "vite2-vue3-ts-mock-shop-pc",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview",
+    "preview": "vue-tsc --noEmit && vite build && vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons": "0.0.11",
+    "axios": "^0.21.1",
+    "echarts": "^5.2.0",
+    "element-plus": "^1.1.0-beta.24",
+    "lodash-es": "^4.17.21",
+    "mockjs": "^1.1.0",
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/echarts": "^4.9.10",
+    "@types/lodash-es": "^4.17.4",
+    "@types/node": "^16.7.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "@vitejs/plugin-vue": "^1.9.2",
+    "@vue/compiler-sfc": "^3.2.19",
+    "autoprefixer": "^10.3.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-define-config": "^1.0.9",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^7.17.0",
+    "prettier": "^2.3.2",
+    "sass": "^1.42.1",
+    "typescript": "^4.3.2",
+    "vite": "^2.5.10",
+    "vite-plugin-mock": "^2.9.6",
+    "vue-tsc": "^0.2.3"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "not dead"
+  ]
+}
