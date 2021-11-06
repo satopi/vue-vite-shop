@@ -2,20 +2,20 @@
   <template v-for="item in menuList" :key="item">
     <!-- 一级路由 -->
     <el-menu-item :index="item.children?.[0].path" v-if="item.meta?.isOne && item.meta?.isShow">
-      <i :class="[item.children?.[0].meta?.icon]"></i>
+      <i :class="['iconfont', 'm-r-8', item.children?.[0].meta?.icon]"></i>
       <template #title>{{ item.children?.[0].meta?.title }}</template>
     </el-menu-item>
     <!-- 多级路由 -->
     <el-sub-menu :index="item.path" v-if="!item.meta?.isOne && item.meta?.isShow">
       <template #title>
-        <i :class="[item.meta?.icon]"></i>
+        <i :class="['iconfont', 'm-r-8', item.meta?.icon]"></i>
         <span>{{ item.meta?.title }}</span>
       </template>
       <!-- 子路由 递归调用 -->
       <template v-for="it in item.children" :key="it">
         <MenuItem :menu="item.children" v-if="it.children && it.meta?.isShow" />
         <el-menu-item :index="it.path" v-if="!it.children && it.meta?.isShow">
-          <i :class="[it.meta?.icon]"></i>
+          <i :class="['iconfont', 'm-r-8', it.meta?.icon]"></i>
           <template #title>{{ it.meta?.title }}</template>
         </el-menu-item>
       </template>

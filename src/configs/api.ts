@@ -42,3 +42,18 @@ export const EDIT_ROLE = '/editRole';
 
 /** 删除角色 */
 export const DELETE_ROLE = '/deleteRole';
+
+/** 获取商家分页 */
+export const GET_MERCHANT_PAGING = '/merchant/getPaging';
+
+/** 获取经营范围 */
+export const GET_BUSINESS_RANGE = '/merchant/getBusinessRange';
+
+/** 商家入驻 */
+export const ADD_MERCHANT = '/merchant/addMerchant';
+
+/** 编辑商家 */
+export const EDIT_MERCHANT = '/merchant/editMerchant';
+
+/** 删除商家 */
+export const DELETE_MERCHANT = '/merchant/deleteMerchant';

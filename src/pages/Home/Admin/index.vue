@@ -97,6 +97,7 @@
   import GrowNum from '@/components/GrowNum/index.vue';
   import { inject, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
   import { cloneDeep } from 'lodash-es';
+  import { ICharts } from '../typing';
 
   const echarts: any = inject('ec');
   const showAnimation = ref(false);
@@ -471,7 +472,7 @@
   };
 
   // 所有图表
-  const charts = [
+  const charts: ICharts[] = [
     { id: 'year', options: getYearOptions(), chart: null },
     { id: 'goods', options: getGoodsOptions(), chart: null },
     { id: 'time', options: getTimeOptions(), chart: null }
@@ -484,21 +485,18 @@
 
   onMounted(() => {
     showAnimation.value = true;
-
-    // 拿到表格中承载数据的div元素
-    const container = document.querySelector('.el-table__body-wrapper');
-    // 拿到元素后，对元素进行定时增加距离顶部距离，实现滚动效果(此配置为每50毫秒移动1像素)
-    tableTimer = setInterval(() => {
-      if (container) {
-        // 元素自增距离顶部1像素
-        container.scrollTop += 1;
-        // 判断元素是否滚动到底部(可视高度+距离顶部=整个高度)
-        if (container.clientHeight + container.scrollTop == container.scrollHeight) {
-          // 重置table距离顶部距离
-          container.scrollTop = 0;
-        }
-      }
-    }, 50);
+    nextTick(() => {
+      init();
+      tableScroll();
+    });
+    window.addEventListener('resize', () => {
+      charts.forEach((p) => {
+        setTimeout(() => {
+          // 避免多图同时加载卡顿
+          if (p.chart) p.chart.resize();
+        }, 200);
+      });
+    });
   });
 
   // 销毁定时器
@@ -508,7 +506,8 @@
     clearInterval(Number(tableTimer));
   });
 
-  nextTick(() => {
+  // 图表初始化
+  const init = () => {
     // 卡片数字递增
     let num = 0;
     cardTimer = setInterval(() => {
@@ -531,6 +530,8 @@
 
     // 初始化图表
     charts.forEach((p: any) => {
+      // 解决数据未更新时页面切换图表不显示的问题
+      document.getElementById(p.id)?.removeAttribute('_echarts_instance_');
       p.chart = echarts.init(document.getElementById(p.id));
       p.chart.setOption(p.options);
       if (p.id == 'time') {
@@ -553,7 +554,25 @@
         }, 2100);
       }
     });
-  });
+  };
+
+  // 表格滚动
+  const tableScroll = () => {
+    // 拿到表格中承载数据的div元素
+    const container = document.querySelector('.el-table__body-wrapper');
+    // 拿到元素后，对元素进行定时增加距离顶部距离，实现滚动效果(此配置为每50毫秒移动1像素)
+    tableTimer = setInterval(() => {
+      if (container) {
+        // 元素自增距离顶部1像素
+        container.scrollTop += 1;
+        // 判断元素是否滚动到底部(可视高度+距离顶部=整个高度)
+        if (container.clientHeight + container.scrollTop == container.scrollHeight) {
+          // 重置table距离顶部距离
+          container.scrollTop = 0;
+        }
+      }
+    }, 50);
+  };
 
   watch(
     () => cloneDeep(cardData.value),

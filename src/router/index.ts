@@ -39,7 +39,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/Home/index.vue'),
         meta: {
           title: '首页',
-          icon: 'el-icon-s-data',
+          icon: 'icon-shuju',
           power: ['1000', '1006']
         }
       }
@@ -58,7 +58,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/Merchant/index.vue'),
         meta: {
           title: '商家管理',
-          icon: 'el-icon-s-custom',
+          icon: 'icon-sr_boss_1',
           power: ['1001']
         }
       }
@@ -77,7 +77,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/Shop/index.vue'),
         meta: {
           title: '店铺管理',
-          icon: 'el-icon-s-shop',
+          icon: 'icon-shangjia1',
           power: ['1002']
         }
       }
@@ -96,7 +96,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/Order/index.vue'),
         meta: {
           title: '订单管理',
-          icon: 'el-icon-s-order',
+          icon: 'icon-dingdan',
           power: ['1003']
         }
       }
@@ -109,7 +109,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: '/system/role',
     meta: {
       title: '系统管理',
-      icon: 'el-icon-s-tools'
+      icon: 'icon-shezhi'
     },
     children: [
       {
@@ -118,7 +118,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/System/Account/index.vue'),
         meta: {
           title: '账号管理',
-          icon: 'el-icon-user-solid',
+          icon: 'icon-zhanghaoguanli',
           power: ['1004'],
           keepAlive: true
         }
@@ -129,7 +129,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/System/Role/index.vue'),
         meta: {
           title: '角色管理',
-          icon: 'el-icon-s-management',
+          icon: 'icon-quanxian',
           power: ['1005'],
           keepAlive: true
         }

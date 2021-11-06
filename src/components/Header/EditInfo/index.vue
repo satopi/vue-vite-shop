@@ -1,6 +1,6 @@
 <template>
   <div id="editDialog">
-    <el-dialog title="个人信息-编辑" v-model="dialogFormVisible" width="400px" center :close-on-click-modal="false">
+    <el-dialog :title="isAdd ? '账号信息-新增' : '账号信息-编辑'" v-model="dialogFormVisible" width="400px" center :close-on-click-modal="false">
       <!-- 头像上传 -->
       <el-upload
         ref="uploadAvatar"
@@ -13,7 +13,7 @@
         :before-upload="beforeAvatarUpload"
       >
         <img v-if="form.headImgUrl" :src="form.headImgUrl" class="avatar" />
-        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        <el-icon v-else class="avatar-uploader-icon"><plus style="width: 2em; height: 2em; vertical-align: middle" /></el-icon>
       </el-upload>
       <!-- 表单 -->
       <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit">
@@ -27,7 +27,7 @@
           <el-input v-model.number="form.mobile" :disabled="disabledList.mobile" />
         </el-form-item>
         <el-form-item label="角色" prop="roleKey">
-          <el-select v-model="form.roleKey" placeholder="请选择角色" :disabled="disabledList.roleKey">
+          <el-select v-model="form.roleKey" placeholder="请选择角色" :disabled="disabledList.roleKey" @change="changeRole">
             <el-option :label="item.name" :value="item.id" v-for="(item, index) in roleOptions" :key="index" />
           </el-select>
         </el-form-item>
@@ -51,15 +51,19 @@
   import { cloneDeep } from 'lodash-es';
   import { IEditForm } from './typing';
   import { IRole } from '@/pages/System/Role/typing';
+  import { httpAddAccount, httpEditAccount } from '@/requests/account';
+  import { useStore } from '@/store';
 
+  const store = useStore();
   const dialogFormVisible = ref(false);
+  const isAdd = ref(true); // 是否为新增
 
   const uploadAvatar = ref(); // 上传控件ref
   const uploadUrl = location.origin + '/api' + UPLOAD_FILE; // 上传文件url
 
   const editForm = ref(); // 表单ref
   const roleOptions = ref<Array<IRole>>([]);
-  const form = reactive({
+  const form = reactive<any>({
     headImgUrl: '',
     account: '',
     nickName: '',
@@ -77,26 +81,42 @@
   const emit = defineEmits(['confirm']);
 
   /** 显示对话框 */
-  const show = async (formList: IEditForm[]) => {
+  const show = async (row: IEditForm[]) => {
     await getRoleOptions();
-    // 格式化数据
-    formList?.forEach((p: IEditForm) => {
-      form[p.prop] = p.value;
-      disabledList[p.prop] = p.disabled;
-    });
+    if (row) {
+      isAdd.value = false;
+      for (const key in row) {
+        disabledList[key] = false;
+        form[key] = row[key];
+        if (key == 'account') disabledList[key] = true;
+        // 系统管理员才允许修改账号角色
+        if (store.state.user.userInfo?.roleKey != 1) disabledList.roleKey = true;
+      }
+    } else {
+      isAdd.value = true;
+      for (const key in form) {
+        disabledList[key] = false;
+        form[key] = '';
+        if (key == 'account') disabledList[key] = false;
+      }
+    }
     dialogFormVisible.value = true;
     nextTick(() => {
       editForm.value.clearValidate();
     });
   };
 
-  /** 关闭对话框 */
-  const close = () => (dialogFormVisible.value = false);
-
   /** 获取角色选项 */
   const getRoleOptions = async () => {
     const { data } = await httpGetRoleList();
     roleOptions.value = data;
+  };
+
+  /** 角色改变时的钩子 */
+  const changeRole = (e: number) => {
+    roleOptions.value.forEach((p) => {
+      if (p.id == e) form.role = p.name;
+    });
   };
 
   /** 头像改变时的钩子 */
@@ -124,12 +144,21 @@
     editForm.value.validate(async (valid: boolean) => {
       if (valid) {
         await uploadAvatar.value.submit();
-        emit('confirm', form);
+        if (isAdd.value) {
+          const { data } = await httpAddAccount(form);
+          emit('confirm', Object.assign(data, { isAdd: true }));
+          ElMessage.success('新增账号成功！');
+        } else {
+          const { data } = await httpEditAccount(form);
+          emit('confirm', Object.assign(data, { isAdd: false }));
+          ElMessage.success('编辑账号信息成功！');
+        }
+        dialogFormVisible.value = false;
       } else return false;
     });
   };
 
-  defineExpose({ show, close });
+  defineExpose({ show });
 </script>
 
 <style lang="scss">

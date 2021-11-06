@@ -6,8 +6,8 @@
           <FilterBar @search="search" />
         </el-col>
         <el-col :span="2.5">
-          <el-button type="default" icon="el-icon-refresh" size="small" plain @click="refreshTable">刷新</el-button>
-          <el-button type="primary" icon="el-icon-plus" size="small" @click="addNewRole">新增角色</el-button>
+          <el-button type="default" icon="Refresh" size="small" plain @click="refreshTable">刷新</el-button>
+          <el-button type="primary" icon="Plus" size="small" @click="addNewRole">新增角色</el-button>
         </el-col>
       </el-row>
       <el-table
@@ -60,19 +60,23 @@
   import { paging, pagingLoading } from '@/hooks/pagination';
   import { httpDeleteRole, httpGetPowerList, httpGetRolePaging } from '@/requests/role';
   import { ElMessage, ElMessageBox } from 'element-plus';
-  import { onMounted, reactive, ref } from 'vue';
+  import { onMounted, provide, reactive, ref } from 'vue';
   import FilterBar from '@/components/FilterBar/index.vue';
   import RoleDialog from './AddOrEdit/index.vue';
   import { IRole } from './typing';
   import { cloneDeep } from 'lodash-es';
   import { currentRow } from '@/hooks/table';
+  import { IFilterList } from '@/components/FilterBar/typing';
 
   const rolePaging = ref(cloneDeep(paging));
-  const searchForm = reactive({ keyword: '' });
+  const searchForm = reactive({});
+  const filterList: Array<IFilterList> = reactive([{ prop: 'input', key: 'keyword', value: '' }]);
   const powerList = ref();
   const powerTree = ref();
   const treeLoading = ref(false);
   const roleAddOrEdit = ref();
+
+  provide('filterList', filterList);
 
   onMounted(async () => {
     rolePaging.value = await httpGetRolePaging();

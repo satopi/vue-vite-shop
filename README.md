@@ -1,26 +1,27 @@
-# MIMO电商平台后台管理系统
+# MIMO 电商平台后台管理系统
 
 ### 项目简介
 
 - 基于 Vue3 + Vite2 + Typescript 开发的电子商务平台，组件库使用 element plus；
 - 数据为 mock 模拟,登录账号密码随意填写；
-- 项目处于快速迭代阶段，最新版在 **[国内仓库](https://gitee.com/ring456/vite2-vue3-ts-mock-shop-pc) (development分支)**；
+- 项目处于快速迭代阶段，最新版在 **[国内仓库](https://gitee.com/ring456/vite2-vue3-ts-mock-shop-pc) (development 分支)**；
 - 本项目仅供学习交流使用，不足之处望海涵，欢迎提 issue 交流学习 ━(_｀ ∀´_)ノ亻!
 - 目前已完成模块：登录、首页（管理员/商家）、系统管理
 
 ### 系统截图
+
 [![5cm5mq.png](https://z3.ax1x.com/2021/10/22/5cm5mq.png)](https://imgtu.com/i/5cm5mq)
 [![5cnPhD.png](https://z3.ax1x.com/2021/10/22/5cnPhD.png)](https://imgtu.com/i/5cnPhD)
 [![5cnl9g.png](https://z3.ax1x.com/2021/10/22/5cnl9g.png)](https://imgtu.com/i/5cnl9g)
 
 ### 技术栈
 
-- **[Vite v2.5.10](https://vitejs.dev/)**
-- **[Vue v3.2.20](https://v3.vuejs.org/)**
+- **[Vite v2.6.13](https://vitejs.dev/)**
+- **[Vue v3.2.21](https://v3.vuejs.org/)**
 - **[Typescript v4.1.5](https://www.typescriptlang.org/)**
 - **[Axios](http://www.axios-js.com/zh-cn/)**
 - **[vite-plugin-mock v2.9.4](https://github.com/anncwb/vite-plugin-mock.git)**
-- **[Element-plus v1.1.0-beta.24](https://element-plus.org/#/zh-CN/component/installation)**
+- **[Element-plus v1.2.0-beta.1](https://element-plus.org/#/zh-CN/component/installation)**
 
 ### 项目规范
 

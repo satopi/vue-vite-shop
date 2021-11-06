@@ -45,7 +45,6 @@
   import { useStore } from '@/store';
   import { session } from '@/utils/tools';
   import { ref } from 'vue';
-  import { ElMessage } from 'element-plus';
   import { reactive } from 'vue';
   import { useRouter } from 'vue-router';
   import EditInfo from './EditInfo/index.vue';
@@ -57,22 +56,20 @@
 
   /** 打开用户信息编辑窗口 */
   const editInfo = () => {
-    const editForm = reactive([
-      { prop: 'headImgUrl', value: store.state.user.userInfo?.headImgUrl, disabled: false },
-      { prop: 'account', value: store.state.user.userInfo?.account, disabled: true },
-      { prop: 'nickName', value: store.state.user.userInfo?.nickName, disabled: false },
-      { prop: 'mobile', value: store.state.user.userInfo?.mobile, disabled: false },
-      { prop: 'roleKey', value: store.state.user.userInfo?.roleKey, disabled: true }
-    ]);
-    editDialog.value.show(editForm);
+    const row = reactive({
+      headImgUrl: store.state.user.userInfo?.headImgUrl,
+      account: store.state.user.userInfo?.account,
+      nickName: store.state.user.userInfo?.nickName,
+      mobile: store.state.user.userInfo?.mobile,
+      roleKey: store.state.user.userInfo?.roleKey
+    });
+    editDialog.value.show(row);
   };
 
   /** 确认编辑用户信息 */
   const confirmEdit = async (form: IAccountForm) => {
     let userInfo = Object.assign(store.state.user.userInfo, form);
     await httpEditUserInfo(userInfo);
-    editDialog.value.close();
-    ElMessage.success('修改成功！');
   };
 
   /** 退出登录 */

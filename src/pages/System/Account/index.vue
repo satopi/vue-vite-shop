@@ -5,8 +5,10 @@
         <FilterBar @search="search" />
       </el-col>
       <el-col :span="2.5">
-        <el-button type="default" icon="el-icon-refresh" size="small" plain @click="refreshTable">刷新</el-button>
-        <el-button type="primary" icon="el-icon-plus" size="small" @click="addNewRole" v-permission="'1004'">新增账号</el-button>
+        <el-button type="default" icon="Refresh" size="small" plain @click="refreshTable">刷新</el-button>
+        <el-button type="primary" size="small" @click="addNewRole" v-permission="'1004'">
+          <i class="iconfont icon-xinzengzhanghao el-icon--left f-s-14"></i>新增账号
+        </el-button>
       </el-col>
     </el-row>
     <el-card shadow="hover" class="flex-1 flex-column table-card">
@@ -59,9 +61,9 @@
 <script lang="ts" setup>
   import { paging, pagingLoading } from '@/hooks/pagination';
   import { ElMessage, ElMessageBox } from 'element-plus';
-  import { onMounted, reactive, ref } from 'vue';
+  import { onMounted, provide, reactive, ref } from 'vue';
   import FilterBar from '@/components/FilterBar/index.vue';
-  import { httpAddAccount, httpDeleteAccount, httpEditAccount, httpGetAccountPaging } from '@/requests/account';
+  import { httpDeleteAccount, httpGetAccountPaging } from '@/requests/account';
   import { IAccount } from './typing';
   import { cloneDeep } from 'lodash-es';
   import EditInfo from '@/components/Header/EditInfo/index.vue';
@@ -71,20 +73,16 @@
   import { filterAsyncRoutes } from '@/hooks/useRoutes';
   import { menuList } from '@/configs/common';
   import { useRouter } from 'vue-router';
+  import { IFilterList } from '@/components/FilterBar/typing';
 
   const store = useStore();
   const router = useRouter();
   const accountPaging = ref(cloneDeep(paging));
-  const searchForm = reactive({ keyword: '' });
-  let isAdd = true;
+  const filterList: Array<IFilterList> = reactive([{ prop: 'input', key: 'keyword', value: '' }]);
+  const searchForm = reactive({});
   const editDialog = ref();
-  const editForm = reactive([
-    { prop: 'headImgUrl', value: '', disabled: false },
-    { prop: 'account', value: '', disabled: true },
-    { prop: 'nickName', value: '', disabled: false },
-    { prop: 'mobile', value: '', disabled: false },
-    { prop: 'roleKey', value: '', disabled: false }
-  ]);
+
+  provide('filterList', filterList);
 
   onMounted(async () => {
     accountPaging.value = await httpGetAccountPaging();
@@ -103,48 +101,33 @@
 
   /** 新增账号 */
   const addNewRole = () => {
-    isAdd = true;
-    editForm.forEach((p) => {
-      p.value = '';
-      if (p.prop == 'account') p.disabled = false;
-    });
-    editDialog.value.show(editForm);
+    editDialog.value.show();
   };
 
   /** 编辑账号 */
   const editRow = (row: IAccount) => {
-    isAdd = false;
-    editForm.forEach((p) => {
-      p.value = row[p.prop];
-      if (p.prop == 'account') p.disabled = true;
-    });
-    editDialog.value.show(editForm);
+    editDialog.value.show(row);
   };
 
   /** 确认新增/编辑的回调 */
-  const confirmAddOrEdit = async (form: any) => {
-    if (isAdd) {
-      const { data } = await httpAddAccount(form);
-      accountPaging.value.pageData.unshift(data);
+  const confirmAddOrEdit = async (row: any) => {
+    if (row.isAdd) {
+      accountPaging.value.pageData.unshift(row);
     } else {
-      const parmas: any = Object.assign(currentRow.value, form);
-      const { data } = await httpEditAccount(parmas);
       accountPaging.value.pageData.map((p: IAccount) => {
-        if (p.id == data.id) {
-          for (const key in data) {
-            p[key] = data[key];
+        if (p.id == row.id) {
+          for (const key in row) {
+            p[key] = row[key];
           }
         }
       });
       // 修改自己权限时立即刷新
-      if (data.id == store.state.user.userInfo?.id) {
+      if (row.id == store.state.user.userInfo?.id) {
         await httpGetUserInfo();
         menuList.value = filterAsyncRoutes(router.options.routes.filter((p) => p.meta?.isMenu));
         router.replace({ path: '/auth' });
       }
     }
-    editDialog.value.close();
-    ElMessage.success(isAdd ? '新增成功！' : '修改成功！');
   };
 
   /** 删除账号 */

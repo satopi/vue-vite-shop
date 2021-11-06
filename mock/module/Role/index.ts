@@ -11,10 +11,10 @@ const role = [
     method: 'post',
     response: (options: { body: Record<string, any> }) => {
       const { body } = options;
+      const keyword = body.keyword || '';
       let index = (body.pageCurrent - 1) * 20;
-      let data = roleList;
       // 筛选角色
-      if (body.keyword && body.keyword != '') data = roleList.filter((p) => p.name.includes(body.keyword));
+      const data = roleList.filter((p) => p.name.includes(keyword));
       const result: IPaging<any> = {
         pageCurrent: body.pageCurrent,
         pageSize: body.pageSize || 20,

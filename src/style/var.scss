@@ -44,8 +44,6 @@ $colors: (
     "small": 13px,
     "extra-small": 12px
   ),
-
-  $font-path: 'element-plus/theme-chalk/fonts'
 );
 
 @use "element-plus/theme-chalk/src/index.scss" as *;

@@ -30,3 +30,9 @@ export interface IPower {
   disabled: boolean;
   children?: Array<IPower>;
 }
+
+// 选择器选项
+export interface IOption {
+  label: string;
+  value: string;
+}

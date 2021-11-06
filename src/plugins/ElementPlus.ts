@@ -34,7 +34,8 @@ import {
   ElTableColumn,
   ElPagination,
   ElTree,
-  ElAvatar
+  ElAvatar,
+  ElIcon
 } from 'element-plus';
 
 const components = [
@@ -72,13 +73,14 @@ const components = [
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTree,
-  ElAvatar
+  ElAvatar,
+  ElIcon
 ];
 
 const plugins = [ElLoading];
 
-import { Edit, Platform, SwitchButton } from '@element-plus/icons';
+import { Edit, Lock, Platform, Plus, Refresh, Search, SwitchButton, User } from '@element-plus/icons';
 
-const icons = [Edit, Platform, SwitchButton];
+const icons = [Edit, Platform, SwitchButton, Lock, User, Search, Refresh, Plus];
 
 export { components, plugins, icons };

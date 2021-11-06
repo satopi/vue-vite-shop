@@ -12,12 +12,10 @@ const account = [
     method: 'post',
     response: (options: { body: Record<string, any> }) => {
       const { body } = options;
+      const keyword = body.keyword || '';
       let index = (body.pageCurrent - 1) * 20;
-      let data = accountList;
       // 筛选账号
-      if (body.keyword && body.keyword != '') {
-        data = accountList.filter((p) => p.account.includes(body.keyword) || p.nickName.includes(body.keyword));
-      }
+      const data = accountList.filter((p) => p.account.includes(keyword) || p.nickName.includes(keyword));
       const result: IPaging<any> = {
         pageCurrent: body.pageCurrent,
         pageSize: body.pageSize || 20,

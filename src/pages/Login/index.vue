@@ -7,10 +7,10 @@
       <h1 class="logo m-b-20"></h1>
       <el-form :model="form" :rules="rules" ref="loginForm" label-width="auto" class="login-form" @keyup.enter="login">
         <el-form-item prop="account">
-          <el-input v-model="form.account" placeholder="请输入账号" prefix-icon="el-icon-user" />
+          <el-input v-model="form.account" placeholder="请输入账号" prefix-icon="User" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input type="password" v-model="form.password" placeholder="请输入密码" prefix-icon="el-icon-lock" />
+          <el-input type="password" v-model="form.password" placeholder="请输入密码" prefix-icon="Lock" />
         </el-form-item>
         <el-form-item prop="role">
           <el-radio-group v-model="form.role">

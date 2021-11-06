@@ -81,3 +81,6 @@ export const powerList: Array<IPower> = [
     ]
   }
 ];
+
+// 经营范围
+export const businessRange: Array<string> = [ '互联网科技', '医疗器械', '本地生活', '广告文化', '游戏', '餐饮', '金融服务', '商贸', '电影休闲娱乐', '职业人才中介', '建筑', '旅游', '教育' ];
