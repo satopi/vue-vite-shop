@@ -21,7 +21,7 @@
 - **[Typescript v4.1.5](https://www.typescriptlang.org/)**
 - **[Axios](http://www.axios-js.com/zh-cn/)**
 - **[vite-plugin-mock v2.9.4](https://github.com/anncwb/vite-plugin-mock.git)**
-- **[Element-plus v1.2.0-beta.1](https://element-plus.org/#/zh-CN/component/installation)**
+- **[Element-plus v1.2.0-beta.2](https://element-plus.org/#/zh-CN/component/installation)**
 
 ### 项目规范
 
