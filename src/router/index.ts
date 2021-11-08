@@ -50,15 +50,28 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     name: 'Merchant',
     component: Layout,
     redirect: '/merchant/list',
-    meta: { isOne: true },
+    meta: {
+      title: '商家管理',
+      icon: 'icon-sr_boss_1'
+    },
     children: [
+      {
+        path: '/merchant/check',
+        name: 'MerchantCheck',
+        component: () => import('@/pages/Merchant/MerchantCheck/index.vue'),
+        meta: {
+          title: '商家审核',
+          icon: 'icon-BCshangjiashenhe',
+          power: ['1001']
+        }
+      },
       {
         path: '/merchant/list',
         name: 'MerchantList',
-        component: () => import('@/pages/Merchant/index.vue'),
+        component: () => import('@/pages/Merchant/MerchantList/index.vue'),
         meta: {
-          title: '商家管理',
-          icon: 'icon-sr_boss_1',
+          title: '商家列表',
+          icon: 'icon-liebiao1',
           power: ['1001']
         }
       }
@@ -106,7 +119,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     path: '/system',
     name: 'System',
     component: Layout,
-    redirect: '/system/role',
+    redirect: '/system/account',
     meta: {
       title: '系统管理',
       icon: 'icon-shezhi'

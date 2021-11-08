@@ -35,7 +35,10 @@ import {
   ElPagination,
   ElTree,
   ElAvatar,
-  ElIcon
+  ElIcon,
+  ElDescriptions,
+  ElDescriptionsItem,
+  ElTag
 } from 'element-plus';
 
 const components = [
@@ -74,7 +77,10 @@ const components = [
   ElBreadcrumbItem,
   ElTree,
   ElAvatar,
-  ElIcon
+  ElIcon,
+  ElDescriptions,
+  ElDescriptionsItem,
+  ElTag
 ];
 
 const plugins = [ElLoading];

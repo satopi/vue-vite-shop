@@ -1,6 +1,6 @@
 import { ADD_MERCHANT, DELETE_MERCHANT, EDIT_MERCHANT, GET_BUSINESS_RANGE, GET_MERCHANT_PAGING } from '@/configs/api';
 import { getPaging, paging, pagingLoading } from '@/hooks/pagination';
-import { IMerchant } from '@/pages/Merchant/typing';
+import { IMerchant } from '@/pages/Merchant/MerchantList/typing';
 import { IOption } from '@/typings';
 import { axiosPost } from '@/utils/http';
 import { cloneDeep } from 'lodash-es';

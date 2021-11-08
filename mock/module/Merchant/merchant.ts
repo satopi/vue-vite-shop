@@ -13,6 +13,7 @@ const getMerchantList = () => {
         businessRange: `@pick(${JSON.stringify(range)}, 1, 3)`,
         'code|9': /[A-Z][0-9]/,
         legal: '@cname',
+        address: 'MIMO电商平台：@url()',
         creator: '@cname',
         'creatorAccount|5': /[a-z][0-9]/,
         mobile: /^1(3|4|5|6|7|8|9)\d{9}$/,

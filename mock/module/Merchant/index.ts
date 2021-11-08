@@ -1,4 +1,4 @@
-import { IMerchant } from '@/pages/Merchant/typing';
+import { IMerchant } from '@/pages/Merchant/MerchantList/typing';
 import { IPaging } from '@/typings';
 import { businessRange, userInfo } from '../../configs';
 import { merchantList } from './merchant';
@@ -53,6 +53,7 @@ const merchant = [
         businessRange: body.businessRange,
         code: body.code,
         legal: body.legal,
+        address: body.address,
         creator: userInfo.nickName,
         creatorAccount: userInfo.account,
         mobile: userInfo.mobile,
