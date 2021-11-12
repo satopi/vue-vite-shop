@@ -38,7 +38,10 @@ import {
   ElIcon,
   ElDescriptions,
   ElDescriptionsItem,
-  ElTag
+  ElTag,
+  ElLink,
+  ElTimeline,
+  ElTimelineItem
 } from 'element-plus';
 
 const components = [
@@ -80,7 +83,10 @@ const components = [
   ElIcon,
   ElDescriptions,
   ElDescriptionsItem,
-  ElTag
+  ElTag,
+  ElLink,
+  ElTimeline,
+  ElTimelineItem
 ];
 
 const plugins = [ElLoading];

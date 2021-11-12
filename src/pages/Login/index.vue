@@ -5,7 +5,7 @@
     </div>
     <el-card class="login-card flex-center">
       <h1 class="logo m-b-20"></h1>
-      <el-form :model="form" :rules="rules" ref="loginForm" label-width="auto" class="login-form" @keyup.enter="login">
+      <el-form :model="form" :rules="rules" ref="loginForm" label-width="auto" class="login-form" @submit.native.prevent @keyup.enter="login">
         <el-form-item prop="account">
           <el-input v-model="form.account" placeholder="请输入账号" prefix-icon="User" />
         </el-form-item>

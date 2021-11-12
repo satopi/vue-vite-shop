@@ -1,6 +1,16 @@
-import { ADD_MERCHANT, DELETE_MERCHANT, EDIT_MERCHANT, GET_BUSINESS_RANGE, GET_MERCHANT_PAGING } from '@/configs/api';
+import {
+  ADD_MERCHANT,
+  CANCEL_MERCHANT,
+  CHECK_MERCHANT,
+  DELETE_MERCHANT,
+  EDIT_MERCHANT,
+  GET_BUSINESS_RANGE,
+  GET_BUSINESS_STATE,
+  GET_MERCHANT_PAGING,
+  RE_SETTLED_MERCHANT
+} from '@/configs/api';
 import { getPaging, paging, pagingLoading } from '@/hooks/pagination';
-import { IMerchant } from '@/pages/Merchant/MerchantList/typing';
+import { IMerchant } from '@/pages/Merchant/typing';
 import { IOption } from '@/typings';
 import { axiosPost } from '@/utils/http';
 import { cloneDeep } from 'lodash-es';
@@ -32,6 +42,17 @@ export const httpGetBuinessRange = async () => {
 };
 
 /**
+ * 获取商家状态
+ * @returns 商家状态选项
+ */
+export const httpGetBuinessState = async () => {
+  const { data } = await axiosPost(GET_BUSINESS_STATE, {}, false);
+  const state: IOption[] = [];
+  data.forEach((p: string) => state.push({ label: p, value: p }));
+  return state;
+};
+
+/**
  * 商家入驻
  * @param parmas 商家信息
  * @returns
@@ -56,4 +77,33 @@ export const httpEditMerchant = (parmas: IMerchant) => {
  */
 export const httpDeleteMerchant = (parmas: { id: string }) => {
   return axiosPost(DELETE_MERCHANT, parmas);
+};
+
+/**
+ * 重新入驻
+ * @param parmas 商家id
+ * @returns
+ */
+export const httpReSettled = async (parmas: { id: string }) => {
+  const { data } = await axiosPost(RE_SETTLED_MERCHANT, parmas);
+  return data;
+};
+
+/**
+ * 注销商家
+ * @param parmas 商家id
+ * @returns
+ */
+export const httpCancelMerchant = async (parmas: { id: string }) => {
+  const { data } = await axiosPost(CANCEL_MERCHANT, parmas);
+  return data;
+};
+
+/**
+ * 商家审核
+ * @param parmas 商家id、审批结果及意见
+ * @returns
+ */
+export const httpCheckMerchant = (parmas: { id: string; check: boolean; opinion: string }) => {
+  return axiosPost(CHECK_MERCHANT, parmas);
 };

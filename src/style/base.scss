@@ -136,6 +136,10 @@ a {
   text-align: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
   vertical-align: middle;
@@ -223,6 +227,11 @@ a {
 .justify-center {
   @extend .flex;
   justify-content: center;
+}
+
+.justify-end {
+  @extend .flex;
+  justify-content: flex-end;
 }
 
 .justify-between {

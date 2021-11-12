@@ -35,7 +35,7 @@ declare global {
   }
   interface Date {
     /** 日期格式化的扩展方法 */
-    format: (format: string) => string;
+    format: (format?: string) => string;
 
     /** 时间分钟加减 */
     addMinute: (num: number) => Date;

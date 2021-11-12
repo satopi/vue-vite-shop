@@ -49,6 +49,9 @@ export const GET_MERCHANT_PAGING = '/merchant/getPaging';
 /** 获取经营范围 */
 export const GET_BUSINESS_RANGE = '/merchant/getBusinessRange';
 
+/** 获取商家状态 */
+export const GET_BUSINESS_STATE = '/merchant/getBusinessState';
+
 /** 商家入驻 */
 export const ADD_MERCHANT = '/merchant/addMerchant';
 
@@ -57,3 +60,15 @@ export const EDIT_MERCHANT = '/merchant/editMerchant';
 
 /** 删除商家 */
 export const DELETE_MERCHANT = '/merchant/deleteMerchant';
+
+/** 重新入驻 */
+export const RE_SETTLED_MERCHANT = '/merchant/reSettled';
+
+/** 注销商家 */
+export const CANCEL_MERCHANT = '/merchant/cancel';
+
+/** 商家审核 */
+export const CHECK_MERCHANT = '/merchant/check';
+
+/** 获取操作记录 */
+export const GET_RECORD = '/record/getList';

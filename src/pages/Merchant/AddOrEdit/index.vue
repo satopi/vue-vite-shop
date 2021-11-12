@@ -2,21 +2,29 @@
   <div id="merchantAddorEdit">
     <el-dialog :title="isAdd ? '商家 - 新增' : '商家 - 编辑'" v-model="dialogFormVisible" width="500px" :close-on-click-modal="false">
       <!-- 表单 -->
-      <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit">
-        <el-form-item label="商店名称" prop="name" placeholder="请输入商店名称">
-          <el-input v-model="form.name" />
+      <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit" @submit.native.prevent>
+        <el-form-item label="商店名称" prop="name">
+          <el-input v-model="form.name" placeholder="请输入商店名称" />
         </el-form-item>
-        <el-form-item label="经营范围" prop="businessRange" placeholder="请选择经营范围">
-          <el-select v-model="form.businessRange" filterable clearable multiple :multiple-limit="3">
+        <el-form-item label="经营范围" prop="businessRange">
+          <el-select v-model="form.businessRange" filterable clearable multiple :multiple-limit="3" placeholder="请选择经营范围">
             <el-option v-for="item in rangeList" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        <el-form-item label="统一社会信用代码" prop="code" placeholder="请输入统一社会信用代码">
-          <el-input v-model="form.code" />
+        <el-form-item label="经营场所" prop="address">
+          <el-input v-model="form.address" placeholder="请输入经营场所" />
         </el-form-item>
-        <el-form-item label="法定代表人" prop="code" placeholder="请输入法定代表人">
-          <el-input v-model="form.legal" />
+        <el-form-item label="统一社会信用代码" prop="code">
+          <el-input v-model="form.code" placeholder="请输入统一社会信用代码" />
         </el-form-item>
+        <el-form-item label="法定代表人" prop="legal">
+          <el-input v-model="form.legal" placeholder="请输入法定代表人" />
+        </el-form-item>
+        <!-- <el-upload ref="upload" class="upload-demo" :action="uploadUrl" :auto-upload="false">
+          <template #trigger>
+            <el-button size="small" type="primary">select file</el-button>
+          </template>
+        </el-upload> -->
       </el-form>
       <template #footer>
         <span class="dialog-footer">
@@ -29,6 +37,7 @@
 </template>
 
 <script lang="ts" setup>
+  // import { UPLOAD_FILE } from '@/configs/api';
   import { httpAddMerchant, httpEditMerchant, httpGetBuinessRange } from '@/requests/merchant';
   import { ElMessage } from 'element-plus';
   import { nextTick, reactive, ref } from 'vue';
@@ -36,6 +45,7 @@
 
   const emit = defineEmits(['success']);
   const dialogFormVisible = ref(false);
+  // const uploadUrl = location.origin + '/api' + UPLOAD_FILE; // 上传文件url
   const isAdd = ref(true); // 是否为新增
   const rangeList = ref(); // 经营范围列表
   const editForm = ref(); // 表单ref
@@ -43,14 +53,18 @@
     name: '',
     businessRange: [],
     code: '',
-    legal: ''
+    legal: '',
+    address: ''
   });
   const rules = reactive({
     name: [{ required: true, message: '请输入商店名称', trigger: 'blur' }],
     businessRange: [{ required: true, message: '请选择经营范围', trigger: 'change' }],
+    address: [{ required: true, message: '请输入经营场所', trigger: 'blur' }],
     legal: [{ required: true, message: '请输入法定代表人', trigger: 'blur' }],
     code: [{ required: true, message: '请输入统一社会信用代码', trigger: 'blur' }]
   });
+
+  console.log(window.origin);
 
   /** 显示对话框 */
   const show = async (row?: IMerchant) => {
@@ -62,16 +76,18 @@
       form.legal = row.legal;
       form.businessRange = row.businessRange;
       form.id = row.id;
+      form.address = row.address;
     } else {
       isAdd.value = true;
       for (const key in form) {
-        form[key] = '';
+        if (key == 'businessRange') form[key] = [];
+        else form[key] = '';
       }
     }
-    dialogFormVisible.value = true;
     nextTick(() => {
       editForm.value.clearValidate();
     });
+    dialogFormVisible.value = true;
   };
 
   /** 提交 */

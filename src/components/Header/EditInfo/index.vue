@@ -16,7 +16,7 @@
         <el-icon v-else class="avatar-uploader-icon"><plus style="width: 2em; height: 2em; vertical-align: middle" /></el-icon>
       </el-upload>
       <!-- 表单 -->
-      <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit">
+      <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit" @submit.native.prevent>
         <el-form-item label="账号" prop="account" placeholder="请输入账号">
           <el-input v-model="form.account" :disabled="disabledList.account" />
         </el-form-item>

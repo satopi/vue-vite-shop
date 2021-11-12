@@ -1,3 +1,4 @@
+import { IRecord } from '@/components/Record/typing';
 import { IRole } from '@/pages/System/Role/typing';
 import { IPower, IUserInfo } from '@/typings';
 import '@/utils/jsExtend';
@@ -83,4 +84,24 @@ export const powerList: Array<IPower> = [
 ];
 
 // 经营范围
-export const businessRange: Array<string> = [ '互联网科技', '医疗器械', '本地生活', '广告文化', '游戏', '餐饮', '金融服务', '商贸', '电影休闲娱乐', '职业人才中介', '建筑', '旅游', '教育' ];
+export const businessRange: string[] = [
+  '互联网科技',
+  '医疗器械',
+  '本地生活',
+  '广告文化',
+  '游戏',
+  '餐饮',
+  '金融服务',
+  '商贸',
+  '电影休闲娱乐',
+  '职业人才中介',
+  '建筑',
+  '旅游',
+  '教育'
+];
+
+// 商家管理流程
+export const businessState: string[] = ['已入驻', '已撤离', '待审核', '已驳回'];
+
+// 操作记录列表
+export const recordList: IRecord[] = [];

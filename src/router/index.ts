@@ -50,27 +50,14 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     name: 'Merchant',
     component: Layout,
     redirect: '/merchant/list',
-    meta: {
-      title: '商家管理',
-      icon: 'icon-sr_boss_1'
-    },
+    meta: { isOne: true },
     children: [
-      {
-        path: '/merchant/check',
-        name: 'MerchantCheck',
-        component: () => import('@/pages/Merchant/MerchantCheck/index.vue'),
-        meta: {
-          title: '商家审核',
-          icon: 'icon-BCshangjiashenhe',
-          power: ['1001']
-        }
-      },
       {
         path: '/merchant/list',
         name: 'MerchantList',
-        component: () => import('@/pages/Merchant/MerchantList/index.vue'),
+        component: () => import('@/pages/Merchant/index.vue'),
         meta: {
-          title: '商家列表',
+          title: '商家管理',
           icon: 'icon-liebiao1',
           power: ['1001']
         }

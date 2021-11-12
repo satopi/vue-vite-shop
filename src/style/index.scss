@@ -1,2 +1,7 @@
 @import './var.scss';
 @import './base.scss';
+
+.el-dialog__body {
+  max-height: 60vh;
+  overflow-y: scroll;
+}

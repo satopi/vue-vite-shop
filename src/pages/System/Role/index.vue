@@ -22,10 +22,10 @@
         @row-dblclick="editRow"
       >
         <el-table-column type="index" width="50" align="center" />
-        <el-table-column prop="name" label="角色" width="150" align="center" />
-        <el-table-column prop="description" label="角色描述" tooltip-effect width="200" />
-        <el-table-column prop="creator" label="创建人" width="auto" align="center" />
-        <el-table-column prop="account" label="创建人账号" tooltip-effect width="110" align="center" />
+        <el-table-column prop="name" label="角色" show-overflow-tooltip width="150" align="center" />
+        <el-table-column prop="description" label="角色描述" show-overflow-tooltip width="200" />
+        <el-table-column prop="creator" label="创建人" show-overflow-tooltip width="auto" align="center" />
+        <el-table-column prop="account" label="创建人账号" show-overflow-tooltip width="110" align="center" />
         <el-table-column prop="date" label="创建日期" width="auto" align="center" />
         <el-table-column label="操作" width="200" align="center">
           <template #default="scope">

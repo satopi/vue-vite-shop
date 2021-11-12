@@ -1,5 +1,5 @@
 <template>
-  <el-form :inline="true" class="search-form" @keyup.enter="search">
+  <el-form :inline="true" class="search-form" @keyup.enter="search" @submit.native.prevent>
     <template v-for="it in filterList" :key="it">
       <el-form-item size="small" v-if="it.prop == 'select'">
         <el-select v-model="it.value" filterable clearable :placeholder="it.placeholder || '请选择'">

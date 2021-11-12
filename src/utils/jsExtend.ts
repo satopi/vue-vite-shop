@@ -57,8 +57,7 @@ String.prototype.priceFormat = function () {
 
 //  日期格式化的扩展方法
 //  y:年, M:月, d:日, h:时, m:分, s:秒, S:毫秒, q:季, w:周, H:上下午
-Date.prototype.format = function (format) {
-  format = format || 'yyyy-MM-dd';
+Date.prototype.format = function (format = 'yyyy-MM-dd') {
   const o = {
     'M+': this.getMonth() + 1, //月
     'd+': this.getDate(), //日

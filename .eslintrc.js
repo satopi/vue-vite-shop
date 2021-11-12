@@ -48,6 +48,7 @@ module.exports = defineConfig({
     'space-before-function-paren': 'off',
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',
+    'vue/no-deprecated-v-on-native-modifier': 'off',
     'vue/html-closing-bracket-newline': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/multiline-html-element-content-newline': 'off',

@@ -31,12 +31,12 @@
             </el-avatar>
           </template>
         </el-table-column>
-        <el-table-column prop="nickName" label="昵称" tooltip-effect width="auto" align="center" />
+        <el-table-column prop="nickName" label="昵称" show-overflow-tooltip width="auto" align="center" />
         <el-table-column prop="account" label="账号" width="auto" align="center" />
-        <el-table-column prop="role" label="角色" tooltip-effect width="120" align="center" />
-        <el-table-column prop="mobile" label="手机号码" tooltip-effect width="120" align="center" />
-        <el-table-column prop="creator" label="创建人" tooltip-effect width="110" align="center" />
-        <el-table-column prop="creatorAccount" label="创建人账号" tooltip-effect width="110" align="center" />
+        <el-table-column prop="role" label="角色" show-overflow-tooltip width="120" align="center" />
+        <el-table-column prop="mobile" label="手机号码" show-overflow-tooltip width="120" align="center" />
+        <el-table-column prop="creator" label="创建人" show-overflow-tooltip width="110" align="center" />
+        <el-table-column prop="creatorAccount" label="创建人账号" show-overflow-tooltip width="110" align="center" />
         <el-table-column prop="date" label="创建日期" width="auto" align="center" />
         <el-table-column label="操作" width="200" align="center">
           <template #default="scope">

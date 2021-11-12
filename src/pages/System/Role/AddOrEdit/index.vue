@@ -2,7 +2,7 @@
   <div id="roleAddOrEdit">
     <el-dialog :title="isAdd ? '角色 - 新增' : '角色 - 编辑'" v-model="dialogFormVisible" width="500px" :close-on-click-modal="false">
       <!-- 表单 -->
-      <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit">
+      <el-form :model="form" :rules="rules" ref="editForm" @keyup.enter="submit" @submit.native.prevent>
         <el-form-item label="角色名称" prop="name" placeholder="请输入角色名称">
           <el-input v-model="form.name" />
         </el-form-item>

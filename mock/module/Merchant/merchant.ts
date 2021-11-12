@@ -1,14 +1,17 @@
-import { businessRange } from '../../configs';
+import { businessRange, businessState } from '../../configs';
 import { mock } from 'mockjs';
+import { addRecord } from '../Record/record';
 
 // 获取商家列表
 const getMerchantList = () => {
   const result: any[] = [];
   const range = businessRange;
+  const state = businessState;
   for (let i = 1001; i < 1045; i++) {
     result.push(
       mock({
         id: i,
+        state: `@pick(${JSON.stringify(state)})`,
         name: '@ctitle(3, 7)',
         businessRange: `@pick(${JSON.stringify(range)}, 1, 3)`,
         'code|9': /[A-Z][0-9]/,
